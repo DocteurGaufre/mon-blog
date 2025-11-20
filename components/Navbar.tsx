@@ -21,6 +21,7 @@ export default function Navbar() {
                 <NavLink href="/">Accueil</NavLink>
                 <NavLink href="/cv">CV</NavLink>
                 <NavLink href="https://www.youtube.com/@DocteurGaufre">Ma chaîne youtube</NavLink>
+                <NavLink href="/blog">Mon Blog</NavLink>
             </ul>
         </nav>
     )

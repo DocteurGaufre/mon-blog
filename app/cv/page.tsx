@@ -1,4 +1,4 @@
-import CvEntry from "../components/CvEntry"
+import CvEntry from "@/components/CvEntry"
 
 export default function Cv() {
     return (
