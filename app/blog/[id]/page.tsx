@@ -20,7 +20,7 @@ export default async function BlogPostPage(props: BlogPostPageProps) {
 
   return (
     <div>
-      <h1>{post.title}</h1>
+      <h1 className="text-center text-3xl my-8 font-bold">{post.title}</h1>
       <p>{post.content}</p>
       <Link href="/blog">Retour à la liste</Link>
     </div>

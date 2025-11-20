@@ -6,8 +6,8 @@ export default async function BlogPage() {
 
   return (
     <div>
-      <h1>Blog</h1>
-      <Link href="/blog/new">Créer un nouveau post</Link>
+      <h1 className="text-center text-3xl my-8 font-bold" >Blog</h1>
+      <Link className="border-2 p-2 font-bold my-12" href="/blog/new">Créer un nouveau post</Link>
       <ul>
         {posts.map(post => (
           <li key={post.id}>
