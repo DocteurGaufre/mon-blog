@@ -1,50 +1,41 @@
 'use server'
+
+import { db } from '@/db'
+import { eq } from 'drizzle-orm'
+import { blogTable } from '@/db/schema'
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-type Post = {
-  id: number
-  title: string
-  content: string
+export async function getArticles() {
+  return await db.select().from(blogTable)
 }
 
-let posts: Post[] = [
-    { id: 1, title: 'Premier post', content: 'Hello World' },
-    { id: 2, title: 'Deuxième post', content: 'Bonjour Next.js' },
-]
-
-export async function getPosts() {
-    return posts
+export async function addArticle(form: FormData) {
+  await db.insert(blogTable).values({
+    title: String(form.get('title')),
+    content: String(form.get('content')),
+    done: false,
+  })
+  redirect((await headers()).get('referer') ?? '/')
 }
 
-export async function getPost(id: number) {
-    return posts.find(post => post.id === id) || null
+export async function editTask(form: FormData) {
+  await db
+    .update(blogTable)
+    .set({
+      title: String(form.get('title')),
+      done: form.get('done') === 'on',
+    })
+    .where(eq(blogTable.id, String(form.get('id'))))
+  redirect((await headers()).get('referer') ?? '/')
 }
 
-export async function createPost(formData: FormData) { 
-    const title = formData.get('title')?.toString() || ''
-    const content = formData.get('content')?.toString() || ''
-
-    const newId = posts.length > 0 ? posts[posts.length - 1].id + 1 : 1
-    const newPost = { id: newId, title, content }
-    posts.push(newPost)
-
-    // Redirige vers la page du post créé
-    redirect(`/blog/${newId}`)
-    // Aucun return
+export async function removeArticle(id: string) {
+  await db.delete(blogTable).where(eq(blogTable.id, id))
+  redirect((await headers()).get('referer') ?? '/')
 }
 
-export async function editPost(form: FormData) { 
-    const id = Number(form.get('id'))
-    const post = posts.find(p => p.id === id)
-    if (post) {
-        post.title = form.get('title')?.toString() || post.title
-        post.content = form.get('content')?.toString() || post.content
-    }
-    return post
-}
-
-export async function deletePost(form: FormData) { 
-    const id = Number(form.get('id'))
-    posts = posts.filter(p => p.id !== id)
-    redirect('/blog')
+export async function removeArticleAction(formData: FormData) {
+  const id = formData.get("id") as string
+  return removeArticle(id)
 }
