@@ -7,12 +7,12 @@ export default function Cv() {
 
             <div className="lg:flex">
                 <section className="border border-slate-200 rounded-2xl p-4 m-4">
-                    <h2>A propos de moi</h2>
+                    <h2 className="font-bold">A propos de moi</h2>
                     <p>Voici mon CV avec mes expériences incroyables</p>
                 </section>
 
                 <section className="lg:grow">
-                    <h2 className="text-3xl my-4">FORMATIONS</h2>
+                    <h2 className="text-3xl my-4">EXPERIENXCES</h2>
 
                     <CvEntry title="Enseignement en physique quantique" employer="ECAM">
                         <ul>

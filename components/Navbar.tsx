@@ -8,16 +8,16 @@ type NavLinkProps = {
 
 function NavLink(props: NavLinkProps) { /*Composant local à NavBar, on ne veut pas exporter ce fichier ailleurs*/
     return (
-        <li className="hover:bg-[#609be2] py-2 px-4">
-            <Link href={props.href}>{props.children}</Link>
+        <li>
+            <Link href={props.href} className="block py-3 px-4 hover:bg-[#609be2]">{props.children}</Link>
         </li>
     )
 }
 
 export default function Navbar() {
     return (
-        <nav className="bg-[#4d7cb5] text-slate-50 shadow-xl">
-            <ul className="container mx-auto flex">
+        <nav className="bg-[#4d7cb5] text-slate-50 shadow-xl sticky top-2 z-50">
+            <ul className="container mx-5 flex">
                 <NavLink href="/">Accueil</NavLink>
                 <NavLink href="/cv">CV</NavLink>
                 <NavLink href="https://www.youtube.com/@DocteurGaufre">Ma chaîne youtube</NavLink>
