@@ -19,7 +19,7 @@ export async function addArticle(form: FormData) {
   redirect((await headers()).get('referer') ?? '/')
 }
 
-export async function editTask(form: FormData) {
+export async function editArticle(form: FormData) {
   await db
     .update(blogTable)
     .set({

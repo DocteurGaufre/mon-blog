@@ -1,4 +1,4 @@
-import { addArticle, getArticles, removeArticle, removeArticleAction } from '@/lib/blog'
+import { addArticle, getArticles, removeArticleAction } from '@/lib/blog'
 
 export default async function Home() {
   const articles = await getArticles()
@@ -11,7 +11,7 @@ export default async function Home() {
           <p className='bg-[#071e26] p-2'>{a.content}</p>
           <form action={removeArticleAction} className="bg-[#071e26] rounded-b">
             <input type="hidden" name="id" value={a.id} />
-            <button type="submit" className="bg-red-600 border-red-800 border-2 rounded px-1.5 pb-0.5 m-3">x</button>
+            <button type="submit" className="bg-red-600 border-red-700 hover:bg-red-400 hover:border-red-500 border-2 rounded px-1.5 pb-0.5 m-3">x</button>
           </form>
         </div>
       ))}
@@ -26,7 +26,7 @@ export default async function Home() {
           <span>Contenu :</span>
           <textarea className="border mx-3 w-8/10 p-2" name="content" />
         </label>
-        <button className="bg-cyan-600 border-cyan-800 border-2 rounded px-1.5 pb-0.5">Envoyer</button>
+        <button className="bg-cyan-600 border-cyan-800 border-2 rounded px-1.5 pb-0.5">Créer</button>
       </form>
     </main>
   );    
