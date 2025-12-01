@@ -11,16 +11,24 @@ export default async function Home() {
           <h3 className="bg-[#436d9e] rounded-t px-3">{a.title}</h3>
           <p className='bg-[#071e26] p-2'>{a.content}</p>
           
-          {/* 2. Modification de la zone du bas pour inclure le bouton Voir et Supprimer */}
           <div className="bg-[#071e26] rounded-b flex justify-between items-center pr-2">
-            
-            {/* Bouton "Voir l'article" */}
-            <Link 
-              href={`/blog/${a.id}`} 
-              className="bg-green-600 hover:bg-green-500 border-2 border-green-700 text-white rounded px-3 py-0.5 m-3"
-            >
-              Voir
-            </Link>
+            <div className="flex">
+              {/* Bouton Voir existant */}
+              <Link 
+                href={`/blog/${a.id}`} 
+                className="bg-green-600 hover:bg-green-500 border-2 border-green-700 text-white rounded px-3 py-0.5 m-3"
+              >
+                Voir
+              </Link>
+              
+              {/* NOUVEAU : Bouton Éditer */}
+              <Link 
+                href={`/blog/edit/${a.id}`} 
+                className="bg-amber-600 hover:bg-amber-500 border-2 border-amber-700 text-white rounded px-3 py-0.5 mt-3 mb-3"
+              >
+                Éditer
+              </Link>
+            </div>
 
             {/* Formulaire de suppression existant */}
             <form action={removeArticleAction}>

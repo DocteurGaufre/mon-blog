@@ -29,10 +29,12 @@ export async function editArticle(form: FormData) {
     .update(blogTable)
     .set({
       title: String(form.get('title')),
+      content: String(form.get('content')),
       done: form.get('done') === 'on',
     })
     .where(eq(blogTable.id, String(form.get('id'))))
-  redirect((await headers()).get('referer') ?? '/')
+  
+  redirect('/blog')
 }
 
 export async function removeArticle(id: string) {
