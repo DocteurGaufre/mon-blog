@@ -1,4 +1,5 @@
 import { addArticle, getArticles, removeArticleAction } from '@/lib/blog'
+import Link from 'next/link';
 
 export default async function Home() {
   const articles = await getArticles()
@@ -9,25 +10,37 @@ export default async function Home() {
         <div key={a.id} className="border rounded m-4">
           <h3 className="bg-[#436d9e] rounded-t px-3">{a.title}</h3>
           <p className='bg-[#071e26] p-2'>{a.content}</p>
-          <form action={removeArticleAction} className="bg-[#071e26] rounded-b">
-            <input type="hidden" name="id" value={a.id} />
-            <button type="submit" className="bg-red-600 border-red-700 hover:bg-red-400 hover:border-red-500 border-2 rounded px-1.5 pb-0.5 m-3">x</button>
-          </form>
+          
+          {/* 2. Modification de la zone du bas pour inclure le bouton Voir et Supprimer */}
+          <div className="bg-[#071e26] rounded-b flex justify-between items-center pr-2">
+            
+            {/* Bouton "Voir l'article" */}
+            <Link 
+              href={`/blog/${a.id}`} 
+              className="bg-green-600 hover:bg-green-500 border-2 border-green-700 text-white rounded px-3 py-0.5 m-3"
+            >
+              Voir
+            </Link>
+
+            {/* Formulaire de suppression existant */}
+            <form action={removeArticleAction}>
+              <input type="hidden" name="id" value={a.id} />
+              <button type="submit" className="bg-red-600 border-red-700 hover:bg-red-400 hover:border-red-500 border-2 rounded px-2 pb-0.5 m-3">x</button>
+            </form>
+          </div>
+
         </div>
       ))}
 
-      <form action={addArticle} className='border rounded p-3 m-4'>
-        <h3 className='font-bold'>Nouveau blog</h3>
-        <label className="block my-3">
-          Titre : 
-          <input className="border mx-14 w-1/2 p-2" name="title" />
-        </label>
-        <label className="flex items-start gap-4 my-3">
-          <span>Contenu :</span>
-          <textarea className="border mx-3 w-8/10 p-2" name="content" />
-        </label>
-        <button className="bg-cyan-600 border-cyan-800 border-2 rounded px-1.5 pb-0.5">Créer</button>
-      </form>
+      {/* Nouveau bouton de création en bas de page */}
+      <div className="flex justify-center m-8">
+        <Link 
+          href="/blog/new" 
+          className="bg-cyan-600 border-cyan-800 border-2 text-white rounded px-6 py-2 hover:bg-cyan-700 font-bold"
+        >
+          + Nouvel article
+        </Link>
+      </div>
     </main>
   );    
 }

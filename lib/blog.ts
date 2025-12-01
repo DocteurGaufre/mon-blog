@@ -10,6 +10,11 @@ export async function getArticles() {
   return await db.select().from(blogTable)
 }
 
+export async function getArticle(id: string) {
+  const result = await db.select().from(blogTable).where(eq(blogTable.id, id));
+  return result[0]; // Retourne le premier élément trouvé
+}
+
 export async function addArticle(form: FormData) {
   await db.insert(blogTable).values({
     title: String(form.get('title')),
