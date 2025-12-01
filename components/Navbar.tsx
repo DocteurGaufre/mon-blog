@@ -16,7 +16,7 @@ function NavLink(props: NavLinkProps) { /*Composant local à NavBar, on ne veut 
 
 export default function Navbar() {
     return (
-        <nav className="bg-[#4d7cb5] text-slate-50 shadow-xl sticky top-2 z-50">
+        <nav className="bg-[#4d7cb5] text-slate-50 shadow-xl sticky top-0 z-50">
             <ul className="container mx-5 flex">
                 <NavLink href="/">Accueil</NavLink>
                 <NavLink href="/cv">CV</NavLink>
